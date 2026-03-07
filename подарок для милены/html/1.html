@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Марта для Милены 🌸</title>
+    <style>
+        :root {
+            --main-pink: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --heart-color: #ff0055;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--soft-pink);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(255, 133, 161, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Биение заголовка */
+        h1 {
+            color: var(--main-pink);
+            font-size: 3.5rem;
+            margin: 0;
+            animation: heartBeat 2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #d4418e;
+            margin-top: 10px;
+        }
+
+        /* Сетка галереи */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            column-count: 3;
+            column-gap: 25px;
+        }
+
+        @media (max-width: 900px) { .gallery-container { column-count: 2; } }
+        @media (max-width: 600px) { .gallery-container { column-count: 1; } }
+
+        /* Биение карточек */
+        .photo-card {
+            background: white;
+            margin-bottom: 25px;
+            break-inside: avoid;
+            border-radius: 25px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            animation: heartBeat 4s infinite ease-in-out; /* Медленное биение */
+            border: 2px solid transparent;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
+            border-color: var(--main-pink);
+        }
+
+        .photo-card img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .photo-card p {
+            text-align: center;
+            color: var(--main-pink);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 15px 0 5px 0;
+        }
+
+        /* Анимация сердцебиения */
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.03); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Падающие элементы (лепестки и сердечки) */
+        .petal {
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        /* Пульсирующие сердечки на фоне */
+        .bg-heart {
+            position: fixed;
+            color: rgba(255, 77, 109, 0.15);
+            font-size: 40px;
+            z-index: 0;
+            animation: heartBeat 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фоновые сердечки (разбросаны случайно скриптом) -->
+    <div id="heart-bg"></div>
+
+    <header>
+        <h1>С 8 Марта, Милена! ❤️</h1>
+        <p class="subtitle">Ты — самое красивое украшение моей жизни</p>
+    </header>
+
+    <div class="gallery-container">
+        <div class="photo-card" style="animation-delay: 0.1s;">
+            <img src="../image/милена2.jpg" alt="Фото 1">
+            <p>Прекрасная ❤️</p>
+        </div>
+
+        <div class="photo-card" style="animation-delay: 0.3s;">
+            <img src="../image/милена6.jpg" alt="Фото 2">
+            <p>Улыбчивая 💖</p>
+        </div>
+
+        <div class="photo-card" style="animation-delay: 0.5s;">
+            <img src="../image/милена5.jpg" alt="Фото 3">
+            <p>Любимая 💞</p>
+        </div>
+
+        <div class="photo-card" style="animation-delay: 0.7s;">
+            <img src="../image/милена7.jpg" alt="Фото 4">
+            <p>Сияющая 💝</p>
+        </div>
+
+        <div class="photo-card" style="animation-delay: 0.9s;">
+            <img src="../image/милена4.jpg" alt="Фото 5">
+            <p>Добрая 💘</p>
+        </div>
+
+        <div class="photo-card" style="animation-delay: 1.1s;">
+            <img src="../image/милена1.jpg" alt="Фото 6">
+            <p>Стильная 💗</p>
+        </div>
+    </div>
+
+    <script>
+        // Летающие лепестки и сердечки
+        const items = ['🌸', '🌷', '❤️', '💖', '✨', '🌺'];
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.innerText = items[Math.floor(Math.random() * items.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = Math.random() * 20 + 15 + 'px';
+            petal.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 6000);
+        }
+        setInterval(createPetal, 150);
+
+        // Создание статичных пульсирующих сердец на фоне
+        const heartContainer = document.getElementById('heart-bg');
+        for (let i = 0; i < 15; i++) {
+            const h = document.createElement('div');
+            h.className = 'bg-heart';
+            h.innerText = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.top = Math.random() * 100 + 'vh';
+            h.style.animationDelay = Math.random() * 2 + 's';
+            h.style.fontSize = Math.random() * 30 + 20 + 'px';
+            heartContainer.appendChild(h);
+        }
+    </script>
+</body>
+</html>
